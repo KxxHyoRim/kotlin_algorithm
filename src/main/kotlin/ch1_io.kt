@@ -1,5 +1,7 @@
 import java.io.BufferedReader
+import java.io.BufferedWriter
 import java.io.InputStreamReader
+import java.io.OutputStreamWriter
 
 fun main() {
     val br = BufferedReader(InputStreamReader(System.`in`))
@@ -23,4 +25,10 @@ fun main() {
         br.readLine().split(" ").map { it.toInt() }.toIntArray()
     }
     println(arr2[0][0])
+
+    // 출력
+    val bw = BufferedWriter(OutputStreamWriter(System.out))
+    bw.write("test")
+    bw.flush()
+    bw.close()
 }
