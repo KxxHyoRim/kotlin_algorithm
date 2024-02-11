@@ -1,6 +1,6 @@
 package notion
 
-import java.util.PriorityQueue
+import java.util.*
 
 fun main() {
     val s = "hello"
@@ -11,6 +11,7 @@ fun main() {
     println(s2) // ello
     var s3 = s2.slice(0..1) // slicing
     println(s3) // el
+    println("this : ${s[0].isUpperCase()}")
 
     var s4 = " hello "
     s4 = s4.trim()
