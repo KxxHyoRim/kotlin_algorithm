@@ -11,6 +11,9 @@ fun main() {
     for (i in array.indices) { // == ( i in 0 until array.size)
         println("nx = ${array[i]}")
     }
+    // sortWith 을 호출하면 새로운 변수 할당 없이 정렬된다
+    // ex) list.sortWith(compareBy<Pair<Int, Int>> { it.second }.thenBy { it.first })
+    // 위 코드의 경우, 미리 선언한 list 내부가 정렬됨
 
     /* list */
 
