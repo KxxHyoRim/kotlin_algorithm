@@ -5,17 +5,6 @@ import java.io.InputStreamReader
 import kotlin.system.exitProcess
 
 lateinit var fac: IntArray
-
-fun getFactorial(n: Int) {
-    // 최대 n까지 필요함
-    fac[0] = 1
-    fac[1] = 1
-
-    for (i in 2..n) {
-        fac[i] = (fac[i - 1] * i)// % 10_007
-    }
-}
-
 fun main() {
 
     val br = BufferedReader(InputStreamReader(System.`in`))
@@ -27,23 +16,12 @@ fun main() {
         exitProcess(0)
     }
 
-    getFactorial(n)
 
-    val max = n / 2
-    var sum = 0
+    fac[1] = 1
+    fac[2] = 2
 
-    for (horizontal in max downTo 0) {
-        val vertical = n - (2 * horizontal)
-
-        val dividend = fac[horizontal + vertical] // 분모
-        val divisor = when {
-            fac[horizontal] == 0 -> fac[vertical]
-            fac[vertical] == 0 -> fac[horizontal]
-            else -> (fac[horizontal] * fac[vertical])// % 10_007
-        }
-        val add = dividend / divisor
-        sum += add
-
+    for (i in 3..n) {
+        fac[i] = (fac[i - 1] + fac[i - 2]) % 10_007
     }
-    println(sum)
+    println(fac[n])
 }
