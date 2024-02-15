@@ -11,15 +11,18 @@ fun main() {
 
     br.readLine()
 
-    val list = br.readLine().split(" ").map { it.toInt() }.toIntArray()
-    val hashset = list.toHashSet().sorted().toList()
-    val hashMap = linkedMapOf<Int, Int>()
-    hashset.mapIndexed { idx, value ->
-        hashMap[value] = idx
-    }
+    val list = br.readLine().split(" ").map(String::toInt).toIntArray()
+    val sortedUniqueList = list.toSortedSet().toList()
+    val indexMap = sortedUniqueList.withIndex().associate { (index, value) -> value to index }
+    // withIndex() 는 mapIndexed랑 동일.
 
-    list.map {
-        bw.write("${hashMap[it]} ")
-    }
+    // 현재 상황에서는 associate에서 본격적으로 transform이 일어나기 떄문에, withIndex를 쓴듯하다
+    // GPT : In summary, while both withIndex() and mapIndexed() provide access to the index during iteration,
+    // withIndex() is mainly used for iteration while
+    // mapIndexed() is primarily used for transformation.
+
+    // associate는 collection map으로 바꾸는애!
+    list.forEach { bw.write("${indexMap[it]} ") }
+
     bw.flush()
 }
