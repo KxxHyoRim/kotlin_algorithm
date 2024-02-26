@@ -2,32 +2,12 @@ package programmers
 
 class Tuple {
     fun solution(s: String): IntArray {
-        val len = s.length
-        var str = s.substring(1, len - 1)
-        str = str.replace("{", "")
-        val list: MutableList<MutableList<Int>> = mutableListOf()
-
-        str.split("}").forEach { tuple ->
-            if (tuple.isNotEmpty()) {
-                val temp = tuple.split(",").filter { it.isNotEmpty() }.map { it.toInt() }.toMutableList()
-                list.add(temp)
-            }
-
-        }
-        val sortedList = list.sortedBy { it.size }
-        println(sortedList)
-
-        val answer = mutableListOf<Int>()
-
-        sortedList.map {
-            println("it : $it")
-            val set = it.toSet() - answer.toSet()
-            println("set : $set")
-            answer.add(set.toIntArray()[0])
-        }
-
-        println("answer : $answer")
-        return answer.toIntArray()
+        return s.substring(2 until s.length - 2)
+            .split("},{") // List<String>
+            .map { it.split(",").map { num -> num.toInt() } } // List<List<Int>>, 여기까지 list는 immutable type이다
+            .sortedBy { it.size } // List<List<Int>>
+            .fold(setOf<Int>()) { acc, ints -> println("$acc $ints"); acc.union(ints) } // 빈 set에다가 추가되는걸 하나씩 더해나감
+            .toIntArray()
     }
 }
 
