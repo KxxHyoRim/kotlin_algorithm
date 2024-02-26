@@ -8,9 +8,8 @@ fun solution(cacheSize: Int, cities: List<String>): Int {
     val set = LinkedList<String>()
 
     cities.map { city ->
-        val lowerCase = city.lowercase(Locale.getDefault())
+        val lowerCase = city.lowercase()
         answer += if (set.contains(lowerCase)) 1 else 5
-
         if (set.isNotEmpty() && set.size == cacheSize) {
             set.removeFirst()
         }
@@ -23,7 +22,6 @@ fun solution(cacheSize: Int, cities: List<String>): Int {
 }
 
 fun main() {
-
 
     val v1 = listOf("Jeju", "Pangyo", "Seoul", "NewYork", "LA", "Jeju", "Pangyo", "Seoul", "NewYork", "LA")
     val v2 = listOf("Jeju", "Pangyo", "Seoul", "Jeju", "Pangyo", "Seoul", "Jeju", "Pangyo", "Seoul")
