@@ -1,4 +1,4 @@
-package programmers
+package programmers.kakao22
 
 import java.lang.Math.min
 import kotlin.properties.Delegates

@@ -1,4 +1,4 @@
-package programmers
+package programmers.kakao22
 
 // 2022 KAKAO TECH INTERNSHIP
 // 성격유형 검사하기 (LV1)

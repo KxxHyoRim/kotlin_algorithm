@@ -1,4 +1,4 @@
-package programmers
+package programmers.kakao21_intern
 
 class EngVocab {
     fun solution(s: String): Int {

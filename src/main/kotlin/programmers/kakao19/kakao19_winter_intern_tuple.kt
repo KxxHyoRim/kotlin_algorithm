@@ -1,4 +1,4 @@
-package programmers
+package programmers.kakao19
 
 class Tuple {
     fun solution(s: String): IntArray {
