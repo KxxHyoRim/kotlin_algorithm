@@ -1,7 +1,42 @@
 package programmers.kakao22
 
 import java.lang.Math.min
+import java.util.*
 import kotlin.properties.Delegates
+
+
+class Solution1 {
+    fun solution(queue1: IntArray, queue2: IntArray): Int {
+        var answer = 0
+        val q1 = LinkedList(queue1.map { it.toLong() })
+        val q2 = LinkedList(queue2.map { it.toLong() })
+
+        var queue1Sum = q1.sum()
+        var queue2Sum = q2.sum()
+
+        while (answer <= queue1.size * 4) {
+            println("$queue1Sum $queue2Sum")
+            when {
+                (queue1Sum == queue2Sum) -> return answer
+                (queue1Sum > queue2Sum) -> {
+                    val temp = q1.removeFirst()
+                    q2.add(temp)
+                    queue2Sum += temp
+                    queue1Sum -= temp
+                }
+
+                else -> {
+                    val temp = q2.removeFirst()
+                    q1.add(temp)
+                    queue1Sum += temp
+                    queue2Sum -= temp
+                }
+            }
+            answer++
+        }
+        return -1
+    }
+}
 
 class Solution2 {
     private var length by Delegates.notNull<Int>()
@@ -74,27 +109,29 @@ class Solution2 {
 }
 
 fun main() {
+
+    val solution = Solution1()
     check(
-        Solution2().solution(
+        solution.solution(
             queue1 = intArrayOf(3, 2, 7, 2),
             queue2 = intArrayOf(4, 6, 5, 1)
         ) == 2
     )
     println()
     check(
-        Solution2().solution(
+        solution.solution(
             queue1 = intArrayOf(1, 2, 1, 2),
             queue2 = intArrayOf(1, 10, 1, 2)
         ) == 7
     )
     check(
-        Solution2().solution(
+        solution.solution(
             queue1 = intArrayOf(1, 1),
             queue2 = intArrayOf(1, 5)
         ) == -1
     )
     check(
-        Solution2().solution(
+        solution.solution(
             queue1 = intArrayOf(9, 7, 2),
             queue2 = intArrayOf(9, 2, 11)
         ) == 3
