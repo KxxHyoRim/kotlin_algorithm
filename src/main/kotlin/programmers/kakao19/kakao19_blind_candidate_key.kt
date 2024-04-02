@@ -13,19 +13,13 @@ class Candidate {
         val sortedNumbers = (1 until combinationNum)
             .sortedBy { Integer.bitCount(it) }
 
-        val candidates = mutableListOf<String>()
+        val candidates = mutableListOf<Int>()
 
         for (number in sortedNumbers) {
-            val binary = number.toString(2).padStart(column, '0') // 2진수 변환 string
-
             // 최소성 검사
             var isPossible = true
             for (candidate in candidates) {
-                // println("${binary.toInt(2)} ${candidate.toInt(2)}")
-                // println("and : ${binary.toInt(2) and candidate.toInt(2)}")
-                // println("cdd : ${candidate.toInt(2)}")
-                // println()
-                if ((binary.toInt(2) and candidate.toInt(2)) == candidate.toInt(2)) {
+                if ((number and candidate) == candidate) {
                     isPossible = false
                     break
                 }
@@ -38,6 +32,7 @@ class Candidate {
             for (i in 0 until row) { // 가로 한줄씩 검사
                 val r = relation[i]
                 var string = ""
+                val binary = number.toString(2).padStart(column, '0') // 2진수 변환 string
                 binary.mapIndexed { idx, it ->
                     if (it == '1') string += r[idx]
                 }
@@ -48,8 +43,8 @@ class Candidate {
                 }
             }
             if (set.size == row) {
-                println(binary)
-                candidates.add(binary)
+                println(number)
+                candidates.add(number)
             }
         }
         println(candidates.size)
