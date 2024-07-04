@@ -1,6 +1,6 @@
 package programmers.algorith_high_score_kit.dfs_bfs
 
-class Solution {
+class Network {
     var isVisited = mutableListOf<Boolean>()
     var size = -1
     lateinit var computers: Array<IntArray>

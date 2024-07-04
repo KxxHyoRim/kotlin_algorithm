@@ -1,6 +1,6 @@
 package programmers.algorith_high_score_kit.dfs_bfs
 
-class Solution {
+class TargetNumber {
     private var target = -1
     private var numbers = intArrayOf()
     private var n = -1
